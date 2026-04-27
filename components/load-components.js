@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const menuOptions = ["rooms", "facilities", "gallery", "testimonials", "location", "contact"];
     
     const link = document.createElement("a");
-    link.href = "/templates/about-tkc.html";
+    link.href = "/Harmony-Website/templates/about-tkc.html";
     
     const logo = document.createElement("img");
-    logo.src = "/static/images/logos_and_icons/tkc_logo.webp";
+    logo.src = "/Harmony-Website/static/images/logos_and_icons/tkc_logo.webp";
     logo.alt = "TKC properties logo";
     logo.classList.add("tkc-logo");
 
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
     menuOptions.forEach(option => {
       const li = document.createElement("li");
       const a = document.createElement("a");
-      a.href = `/index.html#${option}`;
+      a.href = `/Harmony-Website/index.html#${option}`;
       a.textContent = option[0].toUpperCase() + option.slice(1);
       li.appendChild(a);
       ul.appendChild(li);
