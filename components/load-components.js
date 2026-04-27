@@ -115,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.body.appendChild(footer);
 
     try {
-      const response = await fetch("/templates/footer.html");
+      const response = await fetch("/Harmony-Website/templates/footer.html");
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       const html = await response.text();
       document.getElementById("footer-section").innerHTML = html;
