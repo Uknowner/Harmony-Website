@@ -1,7 +1,7 @@
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 
-fetch("../lib/gallery.json")
+fetch("/Harmony-Website/lib/gallery.json")
   .then(res => res.json())
   .then(data => {
     const gallery = document.querySelector(".gallery");
