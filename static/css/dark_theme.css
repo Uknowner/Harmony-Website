@@ -1,0 +1,63 @@
+@media (prefers-color-scheme: dark) {
+
+  :root {
+    --bg: #0f0f12;
+    --surface: #1a1a22;
+    --text: #f5f5f5;
+
+    --color-red: #ff4d5a;
+    --color-blue: #4da3ff;
+    --color-green: #7fb069;
+    --color-yellow: #ffd166;
+
+    --shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+  }
+
+  header {
+    background: rgba(15, 15, 18, 0.75);
+  }
+
+  .sidebar {
+    border-left: 1px solid rgba(255,255,255,0.05);
+  }
+  
+  .menu-btn {
+    color: var(--text);
+  }
+
+  .overlay {
+    background: rgba(0,0,0,0.6);
+  }
+
+  /* ✅ White footer in dark mode */
+  .site-footer {
+    background: #222;
+    color: #eee;
+  }
+
+  .site-footer h3,
+  .site-footer h4 {
+    color: #fff;
+  }
+
+  .footer-links a,
+  .footer-socials a {
+    color: #eee;
+  }
+
+  .footer-links a:hover,
+  .footer-socials a:hover {
+    color: #00aaff;
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #ccc;
+    color: #555;
+  }
+  
+  #footer-section {
+    background-color: #111;
+    color: white;
+  }
+}
+}

@@ -1,0 +1,60 @@
+/* ==============================
+   HEADER
+============================== */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  z-index: 1000;
+
+  background: var(--surface);
+  box-shadow: var(--shadow);
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.tkc-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: transparent;
+}
+
+header h1 {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: var(--color-yellow);
+  white-space: nowrap;
+}
+
+.menu-btn {
+  font-size: 1.6rem;
+  background: transparent;
+  border: none;
+  color: var(--text);
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  transition: 0.2s ease;
+}
+
+.menu-btn:hover {
+  transform: scale(1.1);
+  color: darkgrey;
+}
+
+header.scrolled {
+    opacity: 0;
+    /* transform: translateY(-100%); */
+    pointer-events: none;
+    
+}

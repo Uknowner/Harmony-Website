@@ -1,0 +1,21 @@
+{
+    "rooms": [
+        {"src": "room1.webp",  "alt": "Room View 1"},
+        {"src": "room2.webp",  "alt": "Room View 2"},
+        {"src": "room3.webp",  "alt": "Room View 3"},
+        {"src": "room4.webp",  "alt": "Room View 4"},
+        {"src": "room5.webp",  "alt": "Room View 5"},
+        {"src": "room6.webp",  "alt": "Room View 6"},
+        {"src": "room7.webp",  "alt": "Room View 7"}
+    ],
+    
+    "building": [
+        {"src": "entrance.webp",       "alt": "Accomodation entrance"},
+        {"src": "building_view1.webp", "alt": "Building view 1"},
+        {"src": "building_view2.webp", "alt": "Building view 2"}
+    ],
+    
+    "other": [
+        {"src": "braii_area.webp", "alt": "Braii area"}
+    ]
+}
