@@ -1,4 +1,4 @@
-fetch("/lib/gallery.json")
+fetch("/Harmony-Website/lib/gallery.json")
   .then(res => {
     if (!res.ok) throw new Error("Network error");
     return res.json();
@@ -31,9 +31,9 @@ fetch("/lib/gallery.json")
     }
 
     let srcs = [
-      ["static/images/building/building_view1.webp", "Building exterior view 1"],
-      ["static/images/rooms/room2.webp", "Building interior view"],
-      ["static/images/other/braii_area.webp", "Outdoor braai area"]
+      ["/Harmony-Website/static/images/building/building_view1.webp", "Building exterior view 1"],
+      ["/Harmony-Website/static/images/rooms/room2.webp", "Building interior view"],
+      ["/Harmony-Website/static/images/other/braii_area.webp", "Outdoor braai area"]
     ];
 
     srcs.forEach(([src, alt]) => {
