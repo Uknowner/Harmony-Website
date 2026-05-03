@@ -1,6 +1,14 @@
 /* ==============================
-   HEADER
+   HEADER (MOBILE FIRST - FLEXBOX)
 ============================== */
+
+:root {
+  --surface: #121212;
+  --shadow: 0 4px 10px rgba(0,0,0,0.2);
+  --color-yellow: #f5c518;
+  --text: #ffffff;
+}
+
 header {
   position: fixed;
   top: 0;
@@ -12,36 +20,56 @@ header {
   background: var(--surface);
   box-shadow: var(--shadow);
 
+  /* FLEXBOX APPROACH */
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  transition: opacity 0.3s, transform 0.3s;
+  align-items: center;
+
+  padding: 0.8rem 1rem;
+  will-change: transform, opacity;
 }
 
+/* ==============================
+   LOGO (LEFT)
+============================== */
 .tkc-logo {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: transparent;
+  flex-shrink: 0;
 }
 
+/* ==============================
+   TITLE (CENTERED USING MARGIN AUTO + POSITION TRICK)
+   Since space-between pushes left/right items to edges,
+   we need to center h1 absolutely or use a wrapper.
+   This solution keeps h1 truly centered without breaking layout.
+============================== */
 header h1 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
   margin: 0;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 500;
   color: var(--color-yellow);
   white-space: nowrap;
+
+  /* Centering technique: absolute positioning */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
+/* ==============================
+   MENU BUTTON (RIGHT CORNER)
+============================== */
 .menu-btn {
+  flex-shrink: 0;
   font-size: 1.6rem;
   background: transparent;
   border: none;
   color: var(--text);
   cursor: pointer;
+
   padding: 0.5rem 1rem;
   border-radius: 15px;
   transition: 0.2s ease;
@@ -52,9 +80,27 @@ header h1 {
   color: darkgrey;
 }
 
+/* ==============================
+   LINKS WRAPPER (if any anchor inside header)
+============================== */
+header a {
+  display: flex;
+  align-items: center;
+}
+
+/* ==============================
+   SCROLL HIDE STATE
+============================== */
 header.scrolled {
-    opacity: 0;
-    /* transform: translateY(-100%); */
-    pointer-events: none;
-    
+  transform: translateY(-100%);
+  opacity: 0;
+}
+
+/* ==============================
+   DESKTOP / LAPTOP
+============================== */
+@media (min-width: 451px) {
+  header h1 {
+    font-size: 1.4rem;
+  }
 }

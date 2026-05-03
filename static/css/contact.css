@@ -30,43 +30,13 @@ body {
 }
 
 /* ------------------------------
-   Header
------------------------------- */
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-
-  background: var(--surface);
-  box-shadow: var(--shadow);
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.8rem 1rem;
-}
-
-header h1 {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: var(--color-yellow);
-  white-space: nowrap;
-}
-
-/* ------------------------------
-   Navigation
+   Navigation (mobile first)
 ------------------------------ */
 nav ul {
   list-style: none;
   display: flex;
   justify-content: center;
-  flex-wrap: wrap; /* responsiveness */
+  flex-wrap: wrap;
   background: #222;
   margin: 0;
   padding: 0;
@@ -74,7 +44,7 @@ nav ul {
 
 nav ul li a {
   display: block;
-  padding: 1rem 1.25rem;
+  padding: 0.75rem; /* mobile */
   color: var(--white);
   text-decoration: none;
   transition: background 0.2s ease;
@@ -87,8 +57,12 @@ nav ul li a[aria-current="page"] {
 }
 
 /* ------------------------------
-   Contact Section
+   Contact Section (mobile first)
 ------------------------------ */
+#contact {
+  margin: 1rem;
+  padding: 1.5rem;
+}
 
 .form-group {
   margin-bottom: 1.25rem;
@@ -103,9 +77,10 @@ label {
 input,
 textarea {
   width: 100%;
+  max-width: 100%;
   padding: 0.75rem;
   border: 1px solid var(--border);
-  border-radius: 4px;
+  border-radius: var(--radius);
   font: inherit;
   transition: border 0.2s ease, box-shadow 0.2s ease;
 }
@@ -131,7 +106,7 @@ textarea {
   color: var(--white);
   padding: 0.75rem 1.5rem;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius);
   cursor: pointer;
   font-weight: 600;
   transition: background 0.2s ease, transform 0.1s ease;
@@ -161,15 +136,16 @@ footer a {
 }
 
 /* ------------------------------
-   Small Screens
+   Larger Screens (enhancements)
 ------------------------------ */
-@media (max-width: 600px) {
+@media (min-width: 600px) {
+
   #contact {
-    margin: 1rem;
-    padding: 1.5rem;
+    margin: 2rem;
+    padding: 2rem;
   }
 
   nav ul li a {
-    padding: 0.75rem;
+    padding: 1rem 1.25rem;
   }
 }

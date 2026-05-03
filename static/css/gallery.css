@@ -16,7 +16,7 @@
 }
 
 /* ==============================
-   GLOBAL
+   GLOBAL (MOBILE FIRST)
 ============================== */
 html {
   scroll-behavior: smooth;
@@ -50,19 +50,19 @@ h2 {
 }
 
 /* ==============================
-   CATEGORY CARD (NEW STRUCTURE)
+   CATEGORY CARD (MOBILE FIRST)
 ============================== */
 .category-card {
   background: var(--color-surface);
-  margin: 2rem auto;
-  padding: 1.5rem;
+  margin: 1rem;
+  padding: 1rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   max-width: 1200px;
 }
 
 /* ==============================
-   GALLERY GRID
+   GALLERY GRID (MOBILE FIRST)
 ============================== */
 .gallery {
   display: block;
@@ -70,15 +70,15 @@ h2 {
 
 .image-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   gap: 12px;
   margin-top: 1rem;
 }
 
-/* IMAGES */
+/* IMAGES (MOBILE FIRST) */
 .gallery img {
   width: 100%;
-  height: 220px;
+  height: 150px;
   object-fit: cover;
   border-radius: var(--radius);
   cursor: pointer;
@@ -113,28 +113,22 @@ h2 {
 }
 
 /* ==============================
-   RESPONSIVE
+   LAPTOP / DESKTOP
 ============================== */
-@media (max-width: 450px) {
+@media (min-width: 451px) {
+
   .category-card {
-    margin: 1rem;
-    padding: 1rem;
+    margin: 2rem auto;
+    padding: 1.5rem;
   }
 
-  .gallery img {
-    height: 140px;
-  }
-  
   .image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 12px;
     margin-top: 1rem;
   }
-  
-  /* IMAGES */
+
   .gallery img {
-    width: 100%;
-    height: 150px;
+    height: 220px;
   }
 }

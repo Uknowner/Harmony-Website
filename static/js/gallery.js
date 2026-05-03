@@ -1,7 +1,7 @@
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = document.getElementById("lightboxImg");
 
-fetch("/Harmony-Website/lib/gallery.json")
+fetch("../lib/gallery.json")
   .then(res => res.json())
   .then(data => {
     const gallery = document.querySelector(".gallery");
@@ -40,4 +40,4 @@ fetch("/Harmony-Website/lib/gallery.json")
 
 lightbox.addEventListener("click", () => {
   lightbox.classList.remove("active");
-});
+}).catch(err => console.error('Component load failed', err));

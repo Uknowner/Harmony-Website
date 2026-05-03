@@ -16,7 +16,7 @@
 }
 
 /* ==============================
-   GLOBAL
+   GLOBAL (MOBILE FIRST)
 ============================== */
 html {
   scroll-behavior: smooth;
@@ -28,6 +28,7 @@ html {
 }
 
 body {
+  margin: 0;
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
@@ -35,15 +36,17 @@ body {
 
 main {
   padding-top: 50px;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 /* ==============================
-   SIDEBAR
+   SIDEBAR (MOBILE FIRST)
 ============================== */
 .sidebar {
   position: fixed;
   top: 0;
-  right: -260px;
+  right: -100%;
   width: min(260px, 80vw);
   height: 100%;
   background: var(--surface);
@@ -112,12 +115,12 @@ main {
 }
 
 /* ==============================
-   CARDS
+   CARDS (MOBILE FIRST)
 ============================== */
 .card {
   background: var(--surface);
-  margin: 2rem auto;
-  padding: 2rem;
+  margin: 1rem;
+  padding: 1.2rem;
   border-radius: var(--radius);
   box-shadow: var(--shadow);
   transition: transform 0.3s ease;
@@ -141,7 +144,7 @@ main {
 ============================== */
 .btn {
   display: inline-block;
-  padding: 0.75rem 1.5rem;
+  padding: 0.6rem 1.2rem;
   background: var(--color-red);
   color: white;
   border-radius: var(--radius);
@@ -170,28 +173,27 @@ main {
 ============================== */
 .contact-buttons {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
   margin-top: 1rem;
 }
 
 /* ==============================
-   GALLERY
+   GALLERY (MOBILE FIRST)
 ============================== */
 .card .gallery {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   gap: 1rem;
-  justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
 }
 
 .card .gallery img {
-  max-width: 30%;
-  height: auto;
-  border-radius: var(--radius);
+  width: 100%;
+  max-width: 100%;
+  height: 180px;
   object-fit: cover;
+  border-radius: var(--radius);
   transition: transform 0.2s ease;
 }
 
@@ -254,76 +256,13 @@ label {
 }
 
 /* ==============================
-   CONTAINER
+   UTILITIES
 ============================== */
 .container {
   max-width: 1200px;
   margin: 0 auto;
 }
 
-/* ==============================
-   Messsage
-============================== */
-.end-message {
-  text-align: center;
-  margin-top: 20px;
-  font-style: italic;
-  font-size: 14px;
-}
-
-/* ==============================
-   RESPONSIVE DESIGN
-============================== */
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 0.9rem;
-    white-space: normal;
-    text-align: center;
-    width: auto;
-  }
-
-  .card {
-    margin: 1rem;
-    padding: 1.5rem;
-  }
-
-  .container {
-    padding-top: 4rem;
-  }
-
-  .menu-btn {
-    font-size: 1.3rem;
-    padding: 0.3rem 0.8rem;
-  }
-
-  .tkc-logo {
-    width: 35px;
-    height: 35px;
-  }
-
-  .gallery {
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 480px) {
-  header h1 {
-    font-size: 0.8rem;
-  }
-
-  .card h2 {
-    font-size: 1.3rem;
-  }
-
-  .btn {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-  }
-}
-
-/* ==============================
-   UTILITY CLASSES
-============================== */
 .text-center { text-align: center; }
 .mt-2 { margin-top: 1rem; }
 .mb-2 { margin-bottom: 1rem; }
@@ -336,4 +275,37 @@ iframe {
   height: 300px;
   border: 0;
   border-radius: 25px;
+}
+
+/* ==============================
+   DESKTOP / LAPTOP
+============================== */
+@media (min-width: 768px) {
+
+  .card {
+    margin: 2rem auto;
+    padding: 2rem;
+  }
+
+  .contact-buttons {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card .gallery {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card .gallery img {
+    max-width: 30%;
+    height: 220px;
+  }
+}
+
+@media (min-width: 1024px) {
+  main {
+    padding-top: 70px;
+  }
 }
