@@ -1,0 +1,233 @@
+/* Mobile-first CSS - default styles for all devices */
+
+:root {
+  --bg: #f8f7f4;
+  --surface: #ffffff;
+  --surface2: #f3f2ef;
+  --surface3: #ebe9e5;
+  --border: #e2dfd9;
+  --amber: #d4941a;
+  --amber-dim: #fdf0d5;
+  --amber-glow: #c2780a;
+  --text: #1e1d1a;
+  --text-dim: #6b6660;
+  --text-faint: #b5b0a8;
+  --mark-bg: #fef3c7;
+  --mark-fg: #b45309;
+  --green: #2d8a4e;
+  --green-dim: #dcfce7;
+  --red: #c53030;
+  --red-dim: #fee2e2;
+  --session-london: #2563eb;
+  --session-ny: #d4941a;
+  --session-asia: #7c3aed;
+}
+
+/* Mobile-first CSS - default styles for all devices */
+header {
+    position: sticky;
+    display: flex;
+    top: 0;
+    z-index: 1000;
+    padding: 0.625rem 1rem;
+    text-align: left;
+    background-color: transparent;
+}
+
+header h1 {
+    font-size: clamp(min(0.75rem, 1vw), 0.8.5rem, 1rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text);
+    margin-bottom: 0;
+}
+
+header p {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+}
+
+header p:last-of-type {
+    display: inline-block;
+    margin-top: 0.25rem;
+    padding: 0.2rem 0.625rem;
+    background-color: var(--amber-dim);
+    color: var(--mark-fg);
+    border-radius: 20px;
+    font-size: 0.6875rem;
+    font-weight: 500;
+}
+
+#time-session-container {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 6px; /* controlled spacing */
+    max-width: 350px;
+}
+
+/* REMOVE spacing hacks */
+#time-container {
+    flex-shrink: 0;
+    margin: 0;
+    font-size: clamp(0.675rem, 0.8rem + 0.2vw, 1.125rem);
+}
+
+#session-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-right: auto;
+    padding-left: 6px;
+    border-left: 1px solid var(--border);
+}
+
+.session-separator {
+    width: 1px;
+    height: 16px;
+    background-color: var(--border);
+}
+
+.session-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 16px;
+    font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+}
+
+.session-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: var(--text-faint);
+    display: inline-block;
+    transition: background-color 0.3s ease;
+}
+
+.session-dot.active.asian {
+    background-color: var(--session-asia);
+    box-shadow: 0 0 6px var(--session-asia);
+}
+
+.session-dot.active.london {
+    background-color: var(--session-london);
+    box-shadow: 0 0 6px var(--session-london);
+}
+
+.session-dot.active.ny {
+    background-color: var(--session-ny);
+    box-shadow: 0 0 6px var(--session-ny);
+}
+
+#session-name {
+
+}
+
+/* ── Main Content (Mobile First) ── */
+main, #content {
+    flex: 1;
+    min-height: 0;
+    padding: 0;    /* ← make sure there's no padding */
+    margin: 0;     /* ← make sure there's no margin */
+}
+
+main > h2 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+main > p {
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.875rem;
+}
+
+/* ── Cards Grid (Mobile First - 1 column) ── */
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    margin: 1rem;
+}
+
+/* ── Footer (Mobile First) ── */
+footer {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    color: var(--text-faint);
+    font-size: 0.6875rem;
+    border-top: 1px solid var(--border);
+    background-color: var(--surface2);
+}
+
+/* ── Tablet: 768px and up ── */
+@media screen and (min-width: 768px) {
+    header {
+        padding: 0.75rem 1.5rem;
+    }
+
+    header p {
+        font-size: 0.8125rem;
+    }
+
+    header p:last-of-type {
+        font-size: 0.75rem;
+    }
+
+    main > h2 {
+        font-size: 1.5rem;
+    }
+
+    main > p {
+        font-size: 0.9375rem;
+        margin-bottom: 2rem;
+    }
+
+    footer {
+        padding: 0.625rem 1.5rem;
+        font-size: 0.75rem;
+    }
+
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+/* ── Laptop/Desktop: 1024px and up ── */
+@media screen and (min-width: 1024px) {
+    header {
+        padding: 0.875rem 2rem;
+    }
+
+    header p {
+        font-size: 0.875rem;
+    }
+
+    header p:last-of-type {
+        font-size: 0.8125rem;
+    }
+
+    main > h2 {
+        font-size: 1.75rem;
+    }
+
+    main > p {
+        font-size: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+
+    footer {
+        padding: 0.75rem 2rem;
+        font-size: 0.8125rem;
+    }
+}
