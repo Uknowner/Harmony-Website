@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="../static/css/header.css">
+  <link rel="stylesheet" href="../static/css/main.css">
+  <link rel="stylesheet" href="../static/css/footer.css">
+  <link rel="stylesheet" href="../static/css/dark_theme.css">
+  <title>Application Process</title>
+
+  <style>
+    :root {
+      --color-red: #e63946;
+      --color-blue: #007BFF;
+      --color-green: #6B8E23;
+      --color-yellow: #f4d35e;
+
+      --bg: #f4f4f4;
+      --surface: #ffffff;
+      --text: #222;
+
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      --radius: 8px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    .container {
+      background: var(--surface);
+      width: 100%;
+      max-width: 800px;
+      padding: 40px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .top-bar {
+      width: 100%;
+      height: 8px;
+      background: linear-gradient(
+        to right,
+        var(--color-red),
+        var(--color-blue),
+        var(--color-green),
+        var(--color-yellow)
+      );
+      border-radius: 100px;
+      margin-bottom: 25px;
+    }
+
+    h1 {
+      color: var(--color-blue);
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .important {
+      background: rgba(230, 57, 70, 0.1);
+      border-left: 5px solid var(--color-red);
+      padding: 18px;
+      border-radius: var(--radius);
+      margin-bottom: 25px;
+    }
+
+    .important strong {
+      color: var(--color-red);
+    }
+
+    p {
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+
+    .documents {
+      margin-top: 20px;
+      background: rgba(0, 123, 255, 0.06);
+      padding: 25px;
+      border-radius: var(--radius);
+    }
+
+    .documents h2 {
+      color: var(--color-green);
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      background: white;
+      margin-bottom: 12px;
+      padding: 14px;
+      border-left: 4px solid var(--color-yellow);
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    .footer-note {
+      margin-top: 25px;
+      padding: 15px;
+      background: rgba(107, 142, 35, 0.08);
+      border-radius: var(--radius);
+      border-left: 5px solid var(--color-green);
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 25px;
+      }
+
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+
+    <div class="top-bar"></div>
+
+    <h1>Application Process Information</h1>
+
+    <div class="important">
+      <strong>Important:</strong> Applications operate on a 
+      <strong>first come, first serve</strong> basis. 
+      Applicants are encouraged to arrive early as available spaces may fill quickly.
+    </div>
+
+    <p>
+      All applicants are required to present the necessary documentation
+      during the application process for verification purposes.
+    </p>
+
+    <p>
+      Incomplete documentation may result in delays or disqualification
+      from the application process.
+    </p>
+
+    <div class="documents">
+      <h2>Required Documents</h2>
+
+      <ul>
+        <li>Student Verification Letter</li>
+        <li>Certified ID Document / Identity Card</li>
+        <li>University Student Intake Letter / Proof of Admission</li>
+      </ul>
+    </div>
+
+    <div class="footer-note">
+      Please ensure that all documents are clear, valid, and up to date before arrival.
+    </div>
+
+  </div>
+
+</body>
+</html>
