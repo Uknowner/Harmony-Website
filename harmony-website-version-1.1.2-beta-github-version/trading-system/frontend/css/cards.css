@@ -1,0 +1,152 @@
+/* ── Cards Grid ── */
+:root {
+  --bg: #f8f7f4;
+  --surface: #ffffff;
+  --surface2: #f3f2ef;
+  --surface3: #ebe9e5;
+  --border: #e2dfd9;
+  --amber: #d4941a;
+  --amber-dim: #fdf0d5;
+  --amber-glow: #c2780a;
+  --text: #1e1d1a;
+  --text-dim: #6b6660;
+  --text-faint: #b5b0a8;
+  --mark-bg: #fef3c7;
+  --mark-fg: #b45309;
+  --green: #2d8a4e;
+  --green-dim: #dcfce7;
+  --red: #c53030;
+  --red-dim: #fee2e2;
+  --session-london: #2563eb;
+  --session-ny: #d4941a;
+  --session-asia: #7c3aed;
+}
+    
+.cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* ── Individual Card ── */
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  border-color: var(--amber);
+}
+
+.card a {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  padding: 1.5rem;
+  height: 100%;
+  color: inherit;
+}
+
+.card-icon {
+  margin-bottom: 1rem;
+  color: var(--amber);
+  transition: color 0.2s ease;
+}
+
+.card:hover .card-icon {
+  color: var(--amber-glow);
+}
+
+/* Card accent colors for each icon */
+.card:nth-child(1) .card-icon { color: #2563eb; }
+.card:nth-child(2) .card-icon { color: #c53030; }
+.card:nth-child(3) .card-icon { color: #7c3aed; }
+.card:nth-child(4) .card-icon { color: #2d8a4e; }
+.card:nth-child(5) .card-icon { color: #d4941a; }
+.card:nth-child(6) .card-icon { color: #db2777; }
+.card:nth-child(7) .card-icon { color: #0891b2; }
+
+.card h3 {
+  font-size: 1.0625rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.card p {
+  font-size: 0.875rem;
+  color: var(--text-dim);
+  margin-bottom: 1.25rem;
+  flex: 1;
+}
+
+.card span {
+  align-self: flex-start;
+  padding: 0.5rem 1.125rem;
+  background-color: var(--amber);
+  color: #ffffff;
+  border-radius: 6px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease;
+}
+
+.card:hover span {
+  background-color: var(--amber-glow);
+}
+
+/* ── Desktop: 3 columns, first card spans full width on larger screens ── */
+@media screen and (min-width: 1024px) {
+  main {
+    padding: 3rem 2rem;
+  }
+
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .card:first-child a {
+    flex-direction: row;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.75rem;
+  }
+
+  .card:first-child .card-icon {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+
+  .card:first-child p {
+    margin-bottom: 0;
+  }
+
+  .card:first-child span {
+    flex-shrink: 0;
+    align-self: center;
+  }
+}
+
+/* Extra large: keep first card spanning */
+@media screen and (min-width: 1280px) {
+  .cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .card:first-child {
+    grid-column: span 2;
+  }
+}
