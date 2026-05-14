@@ -33,7 +33,7 @@
     --radius: 8px;
     }
   
-  main, body, cards {
+  main, body, .cards {
     background: var(--bg);
     color: var(--text);
   }
@@ -80,5 +80,4 @@
     background-color: #111;
     color: white;
   }
-}
 }
