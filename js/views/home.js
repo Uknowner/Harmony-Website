@@ -111,9 +111,9 @@ export async function init() {
 
         // Show 3 preview images on the home page
         const previews = [
-            { src: "../assets/images/building/building_view1.webp", alt: "Building exterior view" },
-            { src: "../assets/images/single-rooms/room2.webp", alt: "Room interior view" },
-            { src: "../assets/images/other/braii_area.webp", alt: "Outdoor braai area" }
+            { src: "assets/images/building/building_view1.webp", alt: "Building exterior view" },
+            { src: "assets/images/single-rooms/room2.webp", alt: "Room interior view" },
+            { src: "assets/images/other/braii_area.webp", alt: "Outdoor braai area" }
         ];
 
         previews.forEach(({ src, alt }) => {
