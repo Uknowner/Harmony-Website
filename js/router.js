@@ -1,12 +1,17 @@
+import { destroyEventListeners } from "./utils.js";
+
 const routes = {
-    'home': { file: 'home', render: 'render', init: 'init' },
-    'gallery': { file: 'gallery', render: 'render', init: 'init' },
-    'about': { file: 'home', render: 'renderAbout', init: 'initAbout' }, // Custom functions
-    'apply': { file: 'apply', render: 'render', init: ""},
-    'about-tkc': { file: 'about-tkc', render: 'render', init: ""},
-    'facilities': {file: 'facilities', render: 'render', init: ''},
-    'testimonials': {file: 'testimonials', render: 'render', init: 'init'},
+    home: "home",
+    gallery: "gallery",
+    apply: "apply",
+    contact: "contact",
+    "about-tkc": "about-tkc",
+    facilities: "facilities",
+    testimonials: "testimonials",
+    rooms: "rooms"
 };
+
+let currentModule = null;
 
 export const router = {
     init() {
@@ -20,26 +25,32 @@ export const router = {
 
     async handleRoute() {
         const route = this.getRoute();
-        const viewConfig = routes[route] || { file: route, render: 'render' };
-        await this.loadView(viewConfig);
+        const file = routes[route] || route;
+
+        await this.loadView(file);
     },
 
-    async loadView(viewConfig) {
+    async loadView(file) {
+        // cleanup previous view
+        destroyEventListeners();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
         const content = document.getElementById("content");
+
         try {
-            const module = await import(`./views/${viewConfig.file}.js`);
-            
-            // Use specified render function or default to 'render'
-            const renderFn = viewConfig.render || 'render';
-            content.innerHTML = module[renderFn]();
-            
-            // Use specified init function if it exists in config
-            if (viewConfig.init && module[viewConfig.init]) {
-                module[viewConfig.init]();
-            }
+            const module = await import(`./views/${file}.js`);
+            currentModule = module;
+
+            // render
+            content.innerHTML = module.render?.() || "";
+
+            // init
+            module.init?.();
+
         } catch (e) {
-            console.error(e);
-            content.innerHTML = `<h2>Page not found</h2><pre>${e.message}</pre>`;
+            const { render } = await import("./views/not-found.js");
+            content.innerHTML = render();
+            console.log(e);
         }
     }
 };
