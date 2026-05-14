@@ -1,53 +1,58 @@
+import { getTestimonials } from "../api.js";
+import { createSkeletons } from "../utils.js";
+
 export function render() {
-    const html = `
+    return `
     <div class="cards">
-        <div id="testimonials-loading" class="testimonials-loading">Loading Testimonials...</div>
         <div class="testimonials-container"></div>
-    </div>
-    `;
- 
-    return html;
+    </div>`;
 }
 
-export function init() {
-    fetch("data/testimonials.json")
-        .then(res => res.json())
-        .then(data => {
-            const container = document.querySelector(".testimonials-container");
+export async function init() {
+    const container = document.querySelector(".testimonials-container");
+    
+    const skeletons = createSkeletons(container, 6, {
+        height: "130px",
+        width: "100%",
+        gap: "12px",
+        gridTemplateColumns: "1fr"
+    });
 
-            data.forEach(testimonial => {
-                let card = document.createElement("div");
-                card.classList.add("card");
+    try {
+        const data = await getTestimonials();
 
-                let blockquote = document.createElement("blockquote");
-                
-                let quote = document.createElement("p");
-                quote.textContent = `"${testimonial.quote}"`;
-                blockquote.appendChild(quote);
+        data.forEach(testimonial => {
+            const card = document.createElement("div");
+            card.classList.add("card");
 
-                let cite = document.createElement("cite");
-                cite.textContent = `— ${testimonial.name}`;
-                blockquote.appendChild(cite);
+            const blockquote = document.createElement("blockquote");
 
-                if (testimonial.detail) {
-                    let detail = document.createElement("p");
-                    detail.textContent = testimonial.detail;
-                    detail.style.fontSize = "0.85rem";
-                    detail.style.color = "var(--text-faint)";
-                    detail.style.marginTop = "0.25rem";
-                    blockquote.appendChild(detail);
-                }
+            const quote = document.createElement("p");
+            quote.textContent = `"${testimonial.quote}"`;
+            blockquote.appendChild(quote);
 
-                card.appendChild(blockquote);
-                container.appendChild(card);
-            });
+            const cite = document.createElement("cite");
+            cite.textContent = `— ${testimonial.name}`;
+            blockquote.appendChild(cite);
 
-            const loading = document.getElementById("testimonials-loading");
-            if (loading) loading.style.display = "none";
-        })
-        .catch(err => {
-            console.error('Failed to load testimonials:', err);
-            const loading = document.getElementById("testimonials-loading");
-            if (loading) loading.textContent = "Failed to load testimonials.";
+            if (testimonial.detail) {
+                const detail = document.createElement("p");
+                detail.textContent = testimonial.detail;
+                detail.style.fontSize = "0.85rem";
+                detail.style.color = "var(--text-faint)";
+                detail.style.marginTop = "0.25rem";
+                blockquote.appendChild(detail);
+            }
+
+            card.appendChild(blockquote);
+            container.appendChild(card);
         });
+
+    } catch (err) {
+        console.error("Failed to load testimonials:", err);
+        const loading = document.getElementById("testimonials-container");
+        if (loading) loading.textContent = "Failed to load testimonials.";
+    } finally {
+        skeletons.remove();
+    }
 }
