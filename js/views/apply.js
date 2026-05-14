@@ -37,7 +37,6 @@ export function render() {
     <p id="ending-message">Online applications coming soon</p>
 
   </div>
-  </div>
   </div>`
   
   return html;
