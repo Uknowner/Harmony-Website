@@ -18,7 +18,7 @@ function loadMenu() {
     link.href = "#about-tkc";
     
     const logo = document.createElement("img");
-    logo.src = "../assets/images/logos_and_icons/nav-logo.webp";
+    logo.src = "assets/images/logos_and_icons/nav-logo.webp";
     logo.alt = "TKC properties logo";
     logo.classList.add("tkc-logo");
 
