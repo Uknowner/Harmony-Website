@@ -1,40 +1,42 @@
+import { sendEmail, registerEventListener } from "../utils.js";
+
 export function render() {
-    const html = `
+    return `
     <div class="cards">
-    <section class="card">
-      <h2>Email Harmony</h2>
-      <form id="contact-form" class="contact-form">
-        <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required>
-        </div>
+        <section class="card">
+            <h2>Email Harmony</h2>
 
-        <div class="form-group">
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="your@email.com" required>
-        </div>
+            <form id="contact-form" class="contact-form">
 
-        <div class="form-group">
-          <label for="subject">Subject</label>
-          <input type="text" id="subject" name="subject" placeholder="What's this about?">
-        </div>
+                <input type="text" id="name" placeholder="Full name" required>
+                <input type="email" id="email" placeholder="Email address" required>
+                <input type="text" id="subject" placeholder="Subject">
 
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" placeholder="Your message..." required></textarea>
-        </div>
+                <textarea id="body" rows="5" placeholder="Message" required></textarea>
 
-        <button type="submit" class="btn">Send Message</button>
-      </form>
-    </section>
+                <button type="submit" class="btn">
+                    Send Message
+                </button>
+
+            </form>
+        </section>
+    </div>
+    `;
+}
+
+export function init() {
+    const form = document.getElementById("contact-form");
+
+    if (!form) return;
     
-    <section class="card">
-      <h1>Contact TKC Properties</h1>
-      <p>Use the link below to directly contact TKC Properties using the contact page on their website</p>
-     
-      <a href="https://www.tkcgroup.co.za/contact.html" target="_blank" class="btn">Visit Official Contact Page</a>
-    </section>
-  </div>`;
-  
-  return html;
+    registerEventListener(form, "submit", (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const subject = document.getElementById("subject").value;
+        const body = document.getElementById("body").value;
+
+        sendEmail(name, email, subject, body);
+    });
 }
