@@ -1,16 +1,19 @@
+import { getGallery } from "../api.js";
+import { createSkeletons } from "../utils.js"
+    
 export function render() {
     const html = `        
-        <div class="cards">
+        <div class="cards" id="container">
         
             <div class="card">
                 <h2>Your Home Away From Home</h2>
                 <p>Experience comfort, community, and convenience designed for students. We provide a safe, sanitized environment that helps you focus on your studies and feel at ease.</p>
             </div>
             
-            <div class="card" style="display: none;">
+            <div class="card">
                 <h2>Rooms & Pricing</h2>
                 <p>We offer comfortable single and shared rooms, each furnished with new furniture upon moving in and maintained year-round by our dedicated maintenance team.</p>
-                <a href="#rooms-and-inquire" class="btn">See rooms and enquire</a>
+                <a href="#rooms" class="btn">See rooms and enquire</a>
             </div>
 
             <div class="card">
@@ -79,61 +82,62 @@ export function render() {
     return html;
 }
 
-export function init() {
-    initGallery();
-}
-
-function initGallery() {
+export async function init() {
+    const skeletons = createSkeletons(container, 6, {
+        height: "130px",
+        width: "100%",
+        gap: "12px",
+        gridTemplateColumns: "1fr"
+    });
+    
     const gallery = document.querySelector(".gallery");
     if (!gallery) return;
+    
+    try {
+        const data = await getGallery();
+        const isEmpty =
+            !data ||
+            Object.keys(data).length === 0 ||
+            Object.values(data).every(arr => !Array.isArray(arr) || arr.length === 0);
 
-    fetch("../data/gallery.json")
-        .then(res => {
-            if (!res.ok) throw new Error("Network error");
-            return res.json();
-        })
-        .then(data => {
-            const isEmpty =
-                !data ||
-                Object.keys(data).length === 0 ||
-                Object.values(data).every(arr => !Array.isArray(arr) || arr.length === 0);
+        if (isEmpty) {
+            gallery.innerHTML = `
+                <div class="gallery-empty">
+                    <p>Our gallery is currently empty.</p>
+                    <p>Come back later to see updates from us.</p>
+                </div>`;
+            return;
+        }
 
-            if (isEmpty) {
-                gallery.innerHTML = `
-                    <div class="gallery-empty">
-                        <p>Our gallery is currently empty.</p>
-                        <p>Come back later to see updates from us.</p>
-                    </div>`;
-                return;
-            }
+        // Show 3 preview images on the home page
+        const previews = [
+            { src: "../assets/images/building/building_view1.webp", alt: "Building exterior view" },
+            { src: "../assets/images/single-rooms/room2.webp", alt: "Room interior view" },
+            { src: "../assets/images/other/braii_area.webp", alt: "Outdoor braai area" }
+        ];
 
-            // Show 3 preview images on the home page
-            const previews = [
-                { src: "../assets/images/building/building_view1.webp", alt: "Building exterior view" },
-                { src: "../assets/images/single-rooms/room2.webp",             alt: "Room interior view" },
-                { src: "../assets/images/other/braii_area.webp",        alt: "Outdoor braai area" }
-            ];
-
-            previews.forEach(({ src, alt }) => {
-                const img = document.createElement("img");
-                img.src = src;
-                img.alt = alt;
-                img.loading = "lazy";
-                gallery.appendChild(img);
-            });
-
-            const btnContainer = document.createElement("div");
-            btnContainer.classList.add("gallery-btn-container");
-
-            const btn = document.createElement("a");
-            btn.href = "#gallery";
-            btn.classList.add("btn");
-            btn.textContent = "Open Gallery";
-
-            btnContainer.appendChild(btn);
-            gallery.appendChild(btnContainer);
-        })
-        .catch(() => {
-            gallery.innerHTML = `<div class="gallery-empty"><p>Gallery could not be loaded.</p></div>`;
+        previews.forEach(({ src, alt }) => {
+            const img = document.createElement("img");
+            img.src = src;
+            img.alt = alt;
+            img.loading = "lazy";
+            gallery.appendChild(img);
         });
+
+        const btnContainer = document.createElement("div");
+        btnContainer.classList.add("gallery-btn-container");
+
+        const btn = document.createElement("a");
+        btn.href = "#gallery";
+        btn.classList.add("btn");
+        btn.textContent = "Open Gallery";
+        
+        btnContainer.appendChild(btn);
+        gallery.appendChild(btnContainer);
+        
+    } catch (err) {
+        gallery.innerHTML = `<div class="gallery-empty"><p>Gallery could not be loaded.</p><p>${err}</p></div>`;
+    } finally {
+        skeletons.remove();
+    }
 }
