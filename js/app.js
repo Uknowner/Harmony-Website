@@ -46,7 +46,7 @@ function loadMenu() {
     menuOptions.forEach(option => {
         const li = document.createElement("li");
         const a = document.createElement("a");
-        a.href = `/index.html#${option}`;
+        a.href = `#${option}`;
         a.textContent = option[0].toUpperCase() + option.slice(1);
         li.appendChild(a);
         ul.appendChild(li);
