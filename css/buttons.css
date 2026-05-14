@@ -1,0 +1,53 @@
+/* ── Buttons ── */
+.btn {
+  display: inline-block;
+  padding: 0.625rem 1.5rem;
+  background: var(--amber);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--amber-glow);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ── Contact Buttons ── */
+.contact-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.contact-btn {
+  background: var(--surface2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.contact-btn:hover {
+  background: var(--surface3);
+  color: var(--amber-glow);
+  border-color: var(--amber);
+}
+
+/* ==============================
+   CONTACT BUTTONS
+============================== */
+.contact-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
