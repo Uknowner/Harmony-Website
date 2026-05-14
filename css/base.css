@@ -11,10 +11,10 @@
     --text-dim: #6b6660;
     --text-faint: #b0b0b0;
 
-    --color-red: #e63946;
-    --color-blue: #007BFF;
-    --color-green: #6B8E23;
-    --color-yellow: #f4d35e;
+    --red: #e63946;
+    --blue: #007BFF;
+    --green: #6B8E23;
+    --yellow: #f4d35e;
     
     --amber: #d4941a;
     --amber-dim: #fdf0d5;
@@ -51,4 +51,16 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   color: var(--text);
+  background: var(--bg);
+}
+
+/* ==============================
+   HEADINGS
+============================== */
+h2 {
+  color: var(--blue);
+  margin: 0 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--yellow);
+  font-size: 1.5rem;
 }
