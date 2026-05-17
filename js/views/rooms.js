@@ -47,23 +47,10 @@ export function render() {
             </ul>
 
             <div class="cta">
-                <a href="#apply" class="btn" id="applyBtn">Apply Now</a>
+                <a href="#apply" class="btn" id="applyBtn">Application Process</a>
                 <a href="#contact" class="btn" id="contactBtn">Enquire</a>
+                <a href="#facilities" class="btn" id="facilitiesBtn">See Facilities</a>
             </div>
-
-            <p class="footer-note">
-                Semester & yearly contracts · Deposit: R5,000 · No hidden costs
-            </p>
         </div>
     </div>`;
-}
-
-export function init() {
-    document.getElementById("applyBtn")?.addEventListener("click", () => {
-        window.location.hash = "apply";
-    });
-
-    document.getElementById("contactBtn")?.addEventListener("click", () => {
-        window.location.hash = "contact";
-    });
 }
