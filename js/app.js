@@ -18,7 +18,7 @@ function loadMenu() {
     link.href = "#about-tkc";
     
     const logo = document.createElement("img");
-    logo.src = "assets/images/logos_and_icons/nav-logo.webp";
+    logo.src = "assets/images/logos/nav-logo.webp";
     logo.alt = "TKC properties logo";
     logo.classList.add("tkc-logo");
 
@@ -67,11 +67,13 @@ function loadMenu() {
     function openMenu() {
         aside.classList.add("active");
         overlay.classList.add("active");
+        document.body.classList.add("no-scroll");
     }
 
     function closeMenu() {
         aside.classList.remove("active");
         overlay.classList.remove("active");
+        document.body.classList.remove("no-scroll");
     }
 
     menuBtn.addEventListener("click", openMenu);
