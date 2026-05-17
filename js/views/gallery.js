@@ -106,13 +106,16 @@ export async function init(scrollTarget) {
                     video.playsInline = true;
                     registerEventListener(video, "mouseenter", () => video.play());
                     registerEventListener(video, "mouseleave", () => video.pause());
+                    
+                    registerEventListener(video, "click", () => video.play());
+                    registerEventListener(video, "click", () => video.pause());
 
                     imageGrid.appendChild(video);
                 } else {
                     const img = document.createElement("img");
                     img.src = `assets/images/${category}/${image.src}`;
                     img.alt = image.alt;
-                    img.loading = "lazy";
+                    img.loading = "eager";
 
                     registerEventListener(img, "click", () => {
                         document.body.classList.add("no-scroll");
