@@ -1,4 +1,4 @@
-export const eventListeners = [];
+const eventListeners = [];
 
 export function registerEventListener(element, type, handler) {
     element.addEventListener(type, handler);
@@ -13,6 +13,31 @@ export function destroyEventListeners() {
 
     // clear after cleanup
     eventListeners.length = 0;
+}
+
+export async function scrollToTarget(scrollTarget) {
+    await new Promise(resolve => setTimeout(resolve, 10));
+    
+    let element = document.getElementById(scrollTarget);
+    
+    if (!element && scrollTarget.includes('-')) {
+        element = document.getElementById(scrollTarget.replace(/-/g, ' '));
+    }
+    
+    if (element) {
+        // Get element position
+        const position = element.getBoundingClientRect().top + window.scrollY;
+        const headerHeight = document.querySelector('header')?.offsetHeight || 80;
+        
+        // Scroll to position minus header height
+        window.scrollTo({
+            top: position - headerHeight,
+            behavior: "smooth"
+        });
+        return true;
+    }
+    
+    return false;
 }
 
 function sanitize(text = "") {
@@ -42,18 +67,18 @@ ${sanitize(message)}`;
         `&su=${encodeURIComponent(cleanSubject)}` +
         `&body=${encodeURIComponent(body)}`;
 
-    const mailto =
-        `mailto:${recipient}` +
-        `?subject=${encodeURIComponent(cleanSubject)}` +
-        `&body=${encodeURIComponent(body)}`;
-
     // 🔥 ALWAYS open Gmail first (reliable)
-    window.open(gmail, "_blank");
+    const windowOpened = window.open(gmail, "_blank");
 
-    // optional fallback attempt (not guaranteed)
-    setTimeout(() => {
+    // Only fall back to mailto if the popup was blocked
+    if (!windowOpened) {
+        const mailto =
+            `mailto:${recipient}` +
+            `?subject=${encodeURIComponent(cleanSubject)}` +
+            `&body=${encodeURIComponent(body)}`;
+    
         window.location.href = mailto;
-    }, 300);
+    }
 }
 
 /*
@@ -68,13 +93,19 @@ ${sanitize(message)}`;
  * @param {string} options.display - Display type (default: "grid")
  * @returns {HTMLElement} The wrapper element — remove it later when content loads
  */
-export function createSkeletons(container, count, options = {}) {
+ 
+export class Skeletons {
+  constructor() {
+    this.wrapper = null;
+  }
+
+  create(container, count, options = {}) {
     const {
-        height = "200px",
-        width = "100%",
-        gap = "16px",
-        gridTemplateColumns = "repeat(3, 1fr)",
-        display = "grid"
+      height = "200px",
+      width = "100%",
+      gap = "16px",
+      gridTemplateColumns = "repeat(3, 1fr)",
+      display = "grid",
     } = options;
 
     const wrapper = document.createElement("div");
@@ -85,17 +116,29 @@ export function createSkeletons(container, count, options = {}) {
     wrapper.style.width = "100%";
 
     for (let i = 0; i < count; i++) {
-        const el = document.createElement("div");
-        el.className = "skeleton";
-        el.style.height = height;
-        el.style.width = width;
-        wrapper.appendChild(el);
+      const el = document.createElement("div");
+      el.className = "skeleton";
+      el.style.height = height;
+      el.style.width = width;
+      wrapper.appendChild(el);
     }
 
     container.appendChild(wrapper);
+    this.wrapper = wrapper;
     return wrapper;
-}
+  }
 
+  remove() {
+    if (!this.wrapper) return;
+    setTimeout(() => {
+        this.wrapper.classList.add("removing");
+        registerEventListener(this.wrapper, "transitionend", () => {
+            this.wrapper.remove();
+        });
+    }, 150); // small pause before fade starts, not after
+  }
+}
+    
 export function titleCase(dirtyTitle) {
     const title = dirtyTitle.replace(/[^a-zA-Z0-9\s]/g, " ");
     const cleanTitle = title
