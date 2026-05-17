@@ -4,7 +4,7 @@
   font-size: 2rem;
 }
 
-#application-card .important {
+.important {
   background: rgba(230, 57, 70, 0.1);
   border-left: 5px solid var(--red);
   padding: 18px;
