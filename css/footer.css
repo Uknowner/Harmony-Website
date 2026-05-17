@@ -63,8 +63,24 @@
   color: #555;
 }
 
+.site-credit {
+  margin-top: 6px;
+  font-size: 0.85rem;
+}
+
+.site-credit a,
+.site-credit a:visited {
+  color: var(--blue);
+  text-decoration: none;
+  transition: text-shadow 0.3s ease;
+}
+
+footer a:hover {
+  text-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+
 /* LAPTOP / DESKTOP */
-@media (min-width: 451px) {
+@media (min-width: 480px) {
   .footer-container {
     flex-direction: row;
     justify-content: space-between;
