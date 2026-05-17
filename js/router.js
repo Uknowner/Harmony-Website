@@ -33,7 +33,23 @@ export const router = {
     async loadView(file) {
         // cleanup previous view
         destroyEventListeners();
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        let scrollTarget = null;
+        
+        // #gallery?scroll=single%20rooms
+        if (file.includes("?")) {
+            scrollTarget = file.split("=")[1];
+        
+            // Check if scrollTarget exists and has %20
+            if (scrollTarget && scrollTarget.includes("%20")) {
+                scrollTarget = scrollTarget.replace("%20", "-");
+            }
+        }
+        
+        file = file.includes("?") 
+            ? file.split("?")[0] 
+            : file;      
+        
+        if (file !== "home") window.scrollTo({ top: 0, behavior: "smooth" });
 
         const content = document.getElementById("content");
 
@@ -45,7 +61,7 @@ export const router = {
             content.innerHTML = module.render?.() || "";
 
             // init
-            module.init?.();
+            module.init?.(scrollTarget);
 
         } catch (e) {
             const { render } = await import("./views/not-found.js");
