@@ -47,33 +47,13 @@ header h1 {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 500;
-  color: var(--color-yellow);
+  color: var(--yellow);
   white-space: nowrap;
 
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
   text-align: center;
-}
-
-/* ==============================
-   MENU BUTTON
-============================== */
-.menu-btn {
-  flex-shrink: 0;
-  font-size: 1.6rem;
-  background: transparent;
-  border: none;
-  color: var(--text);
-  cursor: pointer;
-  padding: 0.5rem 1rem;
-  border-radius: 15px;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.menu-btn:hover {
-  transform: scale(1.1);
-  color: darkgrey;
 }
 
 /* ==============================
@@ -113,31 +93,13 @@ header h1 {
 }
 
 .sidebar a:hover {
-  color: var(--color-red);
-}
-
-/* Close button */
-.close-btn {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  font-size: 1.5rem;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  color: var(--text);
-  padding: 0.5rem;
-  transition: color 0.2s ease;
-}
-
-.close-btn:hover {
-  color: var(--color-red);
+  color: var(--red);
 }
 
 /* ==============================
    DESKTOP / LAPTOP
 ============================== */
-@media (min-width: 451px) {
+@media (min-width: 480px) {
   header h1 {
     font-size: 1.4rem;
   }
