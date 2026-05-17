@@ -1,19 +1,27 @@
 import { getGallery } from "../api.js";
-import { createSkeletons } from "../utils.js"
+import { Skeletons } from "../utils.js"
     
 export function render() {
     const html = `        
         <div class="cards" id="container">
-        
             <div class="card">
                 <h2>Your Home Away From Home</h2>
-                <p>Experience comfort, community, and convenience designed for students. We provide a safe, sanitized environment that helps you focus on your studies and feel at ease.</p>
+                <p>Experience comfort, community, and convenience designed for students. Whether you're moving out for the first time or looking for a better place to stay, Harmony Private Home is built around your needs.</p>
+                <p>We provide a safe, sanitized environment maintained year-round, so you can focus on your studies without worrying about your living situation. Our dedicated team is always on hand to ensure everything runs smoothly.</p>
+                <p>More than just a place to sleep — it's a community. Meet fellow students, share spaces, and feel at home from day one.</p>
             </div>
-            
+
             <div class="card">
-                <h2>Rooms & Pricing</h2>
-                <p>We offer comfortable single and shared rooms, each furnished with new furniture upon moving in and maintained year-round by our dedicated maintenance team.</p>
-                <a href="#rooms" class="btn">See rooms and enquire</a>
+                <div class="card-text-media">
+                    <div class="card-content-container">
+                        <h2>Rooms & Pricing</h2>
+                        <p>We offer comfortable single and shared rooms, each furnished with new furniture upon moving in and maintained year-round by our dedicated maintenance team.</p>
+                    </div>
+                    <div class="card-image-container">
+                        <img src="assets/images/single-rooms/room1.webp" alt="">
+                    </div>
+                </div>
+                <a href="#rooms" class="btn">Read more</a>
             </div>
 
             <div class="card">
@@ -48,7 +56,6 @@ export function render() {
 
             <div class="card">
                 <h2>Find Us</h2>
-                <p>We are located near UNISA, Sunnyside — just minutes from campus.</p>
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3593.472574614503!2d28.20146999999999!3d-25.754949899999986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e956221ea9c0e29%3A0xe31c30d0688e6e30!2sHarmoniehof%20Private%20Home!5e0!3m2!1sen!2sza!4v1775727772368!5m2!1sen!2sza"
                     allowfullscreen=""
@@ -57,7 +64,9 @@ export function render() {
                     title="Google Maps location of Harmony Private Home">
                 </iframe>
                 <p>Physical Address: 127 Steve Biko St, Sunnyside, Pretoria, 0007</p>
-                <p><strong>Note:</strong> The map view reflects 2024 imagery and may not show recent updates. For the latest visuals, please see the entrance photos in our gallery.</p>
+                <div class="important">
+                    <strong>Note:</strong> The map view reflects 2024 imagery and may not show recent updates. For the latest visuals, please see the <a id="inline-anchor" href="#gallery?scroll=building">building and entrance<a/> photos in our gallery.
+                </div>
             </div>
 
             <div class="card">
@@ -71,28 +80,30 @@ export function render() {
             </div>
 
             <div class="card special-card">
-                <h2>Apply Now</h2>
+                <h2>Apply</h2>
                 <p>Spaces are limited — secure your room today!</p>
-                <a href="#apply" class="btn">Start Application</a>
+                <a href="#apply" class="btn">Application Process</a>
             </div>
-
         </div>
-    `;
         
+        <script async src="https://www.tiktok.com/embed.js"><\/script>
+    `;
+    
     return html;
 }
 
 export async function init() {
-    const skeletons = createSkeletons(container, 6, {
-        height: "130px",
-        width: "100%",
-        gap: "12px",
-        gridTemplateColumns: "1fr"
-    });
-    
     const gallery = document.querySelector(".gallery");
     if (!gallery) return;
-    
+
+    const skeletons = new Skeletons();
+    skeletons.create(gallery, 3, {
+        height: "200px",
+        width: "100%",
+        gap: "12px",
+        gridTemplateColumns: "repeat(3, 1fr)"
+    });
+
     try {
         const data = await getGallery();
         const isEmpty =
@@ -109,11 +120,10 @@ export async function init() {
             return;
         }
 
-        // Show 3 preview images on the home page
         const previews = [
-            { src: "assets/images/building/building_view1.webp", alt: "Building exterior view" },
-            { src: "assets/images/single-rooms/room2.webp", alt: "Room interior view" },
-            { src: "assets/images/other/braii_area.webp", alt: "Outdoor braai area" }
+            { src: "assets/images/gym/wide-view1.webp", alt: "Wide view of gym and its equipments" },
+            { src: "assets/images/single-rooms/room2.webp", alt: "Single room with clean bed and tiny desk near the window" },
+            { src: "assets/images/other/braii_area.webp", alt: "Open space with braai stands" }
         ];
 
         previews.forEach(({ src, alt }) => {
@@ -131,12 +141,12 @@ export async function init() {
         btn.href = "#gallery";
         btn.classList.add("btn");
         btn.textContent = "Open Gallery";
-        
+
         btnContainer.appendChild(btn);
         gallery.appendChild(btnContainer);
-        
+
     } catch (err) {
-        gallery.innerHTML = `<div class="gallery-empty"><p>Gallery could not be loaded.</p><p>${err}</p></div>`;
+        gallery.innerHTML = `<div class="gallery-empty"><p>Gallery could not be loaded.</p><p>${err.message}</p></div>`;
     } finally {
         skeletons.remove();
     }
