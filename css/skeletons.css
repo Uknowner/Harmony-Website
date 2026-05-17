@@ -1,16 +1,32 @@
+.skeleton-wrapper {
+    transition: opacity 0.3s ease;
+}
+
+.skeleton-wrapper.removing {
+    opacity: 0;
+}
+    
 .skeleton {
+    background-color: var(--surface2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    position: relative;
+}
+
+.skeleton::after {
+    content: "";
+    position: absolute;
+    inset: 0;
     background: linear-gradient(
         90deg,
-        var(--surface2) 25%,
+        transparent 0%,
         var(--surface3) 50%,
-        var(--surface2) 75%
+        transparent 100%
     );
-    background-size: 200% 100%;
-    animation: shimmer 1.4s infinite;
-    border-radius: var(--radius);
+    animation: shimmer 1.5s infinite;
 }
 
 @keyframes shimmer {
-    0%   { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
 }
