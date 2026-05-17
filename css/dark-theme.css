@@ -1,37 +1,53 @@
 @media (prefers-color-scheme: dark) {
 
   :root {
-    --bg: #0f0f12;
-    --surface: #1a1a22;
-    --surface2: #22222c;
-    --surface3: #2a2a36;
-    --border: #333340;
-    --text: #f5f5f5;
-    --text-dim: #a0a0b0;
-    --text-faint: #606070;
+    --bg: #0f0f13;
+    --surface: #1a1a24;
+    --surface2: #22222e;
+    --surface3: #2a2a38;
+    --border: #3a3a4a;
+    --text: #e8e8f0;
+    --text-dim: #9a96a8;
+    --text-faint: #6b6678;
 
-    --color-red: #ff4d5a;
-    --color-blue: #4da3ff;
-    --color-green: #7fb069;
-    --color-yellow: #ffd166;
+    --red: #ff6b6b;
+    --blue: #5b9cf5;
+    --green: #8bc34a;
+    --yellow: #f4d35e;
     
-    --amber: #e6a817;
-    --amber-dim: #2e2200;
-    --amber-glow: #ffc834;
+    --amber: #f0b944;
+    --amber-dim: #3d3018;
+    --amber-glow: #f0b944;
     
-    --mark-bg: #3d2a00;
-    --mark-fg: #ffc834;
+    --mark-bg: #3d2e0a;
+    --mark-fg: #f0b944;
     
-    --green-dim: #0f1f12;
-    --red-dim: #2a1215;
+    --green-dim: #1a2e12;
+    --red-dim: #3d1818;
 
-    --session-london: #4da3ff;
-    --session-ny: #e6a817;
-    --session-asia: #9b6bff;
+    --session-london: #5b9cf5;
+    --session-ny: #f0b944;
+    --session-asia: #a78bfa;
 
-    --shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
-    --radius: 8px;
-    }
+    --shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        
+    --anchor-hover: 0 0 10px rgba(91, 156, 245, 0.5);
+  }
+  
+  /* ── Dark Theme Buttons ── */
+  .btn {
+    display: inline-block;
+    padding: 0.625rem 1.5rem;
+    background: var(--blue);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+  }
   
   main, body, .cards {
     background: var(--bg);
@@ -50,7 +66,6 @@
     background: rgba(0,0,0,0.6);
   }
 
-  /* ✅ White footer in dark mode */
   .site-footer {
     background: #222;
     color: #eee;
