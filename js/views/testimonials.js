@@ -1,5 +1,5 @@
 import { getTestimonials } from "../api.js";
-import { createSkeletons } from "../utils.js";
+import { Skeletons } from "../utils.js";
 
 export function render() {
     return `
@@ -11,7 +11,8 @@ export function render() {
 export async function init() {
     const container = document.querySelector(".testimonials-container");
     
-    const skeletons = createSkeletons(container, 6, {
+    const skeletons = new Skeletons();
+    skeletons.create(container, 6, {
         height: "130px",
         width: "100%",
         gap: "12px",
@@ -50,8 +51,7 @@ export async function init() {
 
     } catch (err) {
         console.error("Failed to load testimonials:", err);
-        const loading = document.getElementById("testimonials-container");
-        if (loading) loading.textContent = "Failed to load testimonials.";
+        container.textContent = "Failed to load testimonials.";
     } finally {
         skeletons.remove();
     }
